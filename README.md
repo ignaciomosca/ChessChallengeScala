@@ -1,0 +1,2 @@
+# ChessChallengeScala
+ChessChallenge in Scala
