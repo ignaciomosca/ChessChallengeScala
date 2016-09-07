@@ -12,12 +12,4 @@ class Board(M: Int, N: Int, pieces: List[ChessPiece], usedPieces: List[ChessPiec
 
   def place(c: ChessPiece) = new Board(M, N, pieces, c :: usedPieces)
 
-  def createPiece(c: ChessPiece, row: Int, col: Int): ChessPiece = c match {
-    case c: King => King(row, col)
-    case c: Queen => Queen(row, col)
-    case c: Bishop => Bishop(row, col)
-    case c: Knight => Knight(row, col)
-    case c: Rook => Rook(row, col)
-  }
-
 }

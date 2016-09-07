@@ -7,6 +7,8 @@ val r = new Rook(2,2)
 val n = new Knight(2,2)
 
 
+ChessPieceUtils.createPiece(King(0,0),2,2)
+
 k.attacks(b)
 
 k.moves
