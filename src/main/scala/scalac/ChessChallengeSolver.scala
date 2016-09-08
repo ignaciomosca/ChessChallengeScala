@@ -5,31 +5,26 @@ package scalac
   */
 object ChessChallengeSolver {
 
-  def findCandidate(chessPiece: ChessPiece, board: Board): ChessPiece = {
-    val candidates = for {
+  def solution(board: Board, pieces: List[ChessPiece], solutions: Set[Board], testedConfigurations: Set[Board]): Set[Board] = {
+    if (!pieces.isEmpty) {
+      val candidateBoard = findCandidatePosition(pieces.head, board, testedConfigurations)
+      val setBoards = (for{
+        b <- candidateBoard
+      } yield solution(b, pieces.tail, Set(), Set())).foldLeft(Set[Board]())((s,b) => s++b)
+      setBoards
+    } else {
+      Set(board)
+    }
+  }
+
+  private def findCandidatePosition(chessPiece: ChessPiece, board: Board, testedConfigurations: Set[Board]) = {
+    for {
       r <- 1 to board.getM
       c <- 1 to board.getN
       p = ChessPieceUtils.createPiece(chessPiece, r, c)
-      if(board.isSafe(p))
-    } yield p
-    candidates.head
-  }
-
-  def solution(board: Board, pieces: List[ChessPiece], solutions: Set[Board], testedConfigurations: Set[Board]): Set[Board] = {
-    if (!pieces.isEmpty) {
-      val candidate = findCandidate(pieces.head, board)
-      val b = board.place(candidate)
-      if (pieces.size != 1) {
-        if (!testedConfigurations.contains(b)) {
-          solution(b, pieces.tail, solutions, testedConfigurations + b)
-        }
-      } else {
-        if (!solutions.contains(b)) {
-          solution(b, pieces.tail, solutions + b, testedConfigurations)
-        }
-      }
-    }
-    solutions
+      b = board.place(p)
+      if (board.isSafe(p) && !testedConfigurations.contains(b))
+    } yield b
   }
 
 }
