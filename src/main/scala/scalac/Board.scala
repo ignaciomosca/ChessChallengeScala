@@ -12,4 +12,16 @@ class Board(M: Int, N: Int, usedPieces: List[ChessPiece]) {
 
   def place(c: ChessPiece) = new Board(M, N, c :: usedPieces)
 
+  def findChessPiece(row: Int, col: Int):Char = usedPieces.find(p => p.row==row && p.col==col).map(p => p.piece()).getOrElse('_')
+
+  def show() = {
+    for(x <- 1 to M){
+      for(y <- 1 to N){
+        print(findChessPiece(x,y))
+      }
+      println()
+    }
+    println()
+  }
+
 }
