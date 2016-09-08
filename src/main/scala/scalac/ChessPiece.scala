@@ -5,7 +5,7 @@ package scalac
   * I thought about using a trait and an abstract class, but because a Trait already defines a type, using both was useless
   * Created by ignacio on 05/09/16.
   */
-trait ChessPiece {
+sealed trait ChessPiece {
   def row: Int
 
   def col: Int
