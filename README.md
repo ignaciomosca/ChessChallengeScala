@@ -12,7 +12,7 @@ When returning your solution, please provide with your answer the total number o
 
 # The Solution
 
-I already solved this problem in [Java](https://github.com/ignaciomosca/ChessChallenge) so make no mistake, if the solution looks similar it's because it is!
+[I already solved this problem in Java](https://github.com/ignaciomosca/ChessChallenge) so make no mistake, if the solution looks similar it's because it is!
 The same approach, testing strategy and good practices were applied, only that because of the benefits of Scala, it looks much more elegant, collections are immutable by default, I have for-comprehensions that allow me to write less code, etc. 
 The following solution is based on the [N-Queen Problem](https://developers.google.com/optimization/puzzles/queens) which is a well known optimization problem taught in Computer Science Classes. The proposed solution makes use of a technique called backtracking to find all the solutions to the problem.
 Based on experience with previous problems, I reduced the current problem to an N-Queen problem with an 8x8 Board. I figured that after being able to get the solution for that problem, solving the rest of it was a matter of adding more pieces, determining how they moved, and writing unit tests for them.
@@ -30,3 +30,4 @@ Based on experience with previous problems, I reduced the current problem to an 
 * git clone https://ignaciomosca@bitbucket.org/ignaciomosca/chesschallengescala.git
 * cd ChessChallengeScala
 * sbt compile
+* sbt test

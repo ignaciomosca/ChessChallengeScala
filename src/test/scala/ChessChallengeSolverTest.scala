@@ -23,7 +23,7 @@ class ChessChallengeSolverTest extends FunSuite {
   }
   test("8x8 board returns 92 solutions") {
     val solutions = ChessChallengeSolver.solution(new Board(8, 8, Set()), List(Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0)), Set(), Set())
-    solutions.foreach(b => b.show())
+    solutions.take(5).foreach(b => b.show())
     assert(solutions.size == 92)
   }
 
