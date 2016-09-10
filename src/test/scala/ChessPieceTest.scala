@@ -3,6 +3,7 @@ import org.scalatest.FunSuite
 import scalac.{Bishop, King, Rook, Knight, Queen}
 
 /**
+  * Tests the valid and invalid movements of each ChessPiece
   * Created by ignacio on 05/09/16.
   */
 

@@ -12,13 +12,19 @@ import scalac._
 class ChessChallengeSolverTest extends FunSuite {
 
   test("3x3 board containing 2 Kings and 1 Rook") {
-    assert(ChessChallengeSolver.solution(new Board(3, 3, Set()), List(King(0, 0), King(0, 0), Rook(0, 0)), Set(), Set()).size == 4)
+    val solutions = ChessChallengeSolver.solution(new Board(3, 3, Set()), List(King(0, 0), King(0, 0), Rook(0, 0)), Set(), Set())
+    solutions.foreach(b => b.show())
+    assert(solutions.size == 4)
   }
   test("4x4 board containing 3 Rooks and 4 Knighs") {
-    assert(ChessChallengeSolver.solution(new Board(4, 4, Set()), List(Knight(0, 0), Knight(0, 0), Knight(0, 0), Knight(0, 0), Rook(0, 0), Rook(0, 0)), Set(), Set()).size == 8)
+    val solutions = ChessChallengeSolver.solution(new Board(4, 4, Set()), List(Knight(0, 0), Knight(0, 0), Knight(0, 0), Knight(0, 0), Rook(0, 0), Rook(0, 0)), Set(), Set())
+    solutions.foreach(b => b.show())
+    assert(solutions.size == 8)
   }
   test("8x8 board returns 92 solutions") {
-    assert(ChessChallengeSolver.solution(new Board(8, 8, Set()), List(Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0)), Set(), Set()).size == 92)
+    val solutions = ChessChallengeSolver.solution(new Board(8, 8, Set()), List(Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0)), Set(), Set())
+    solutions.foreach(b => b.show())
+    assert(solutions.size == 92)
   }
 
 }
