@@ -31,3 +31,14 @@ Based on experience with previous problems, I reduced the current problem to an 
 * cd ChessChallengeScala
 * sbt compile
 * sbt test
+
+Or
+
+If you want to test the code in the REPL
+
+* export SBT_OPTS="-Xmx4G -XX:+UseConcMarkSweepGC -XX:+CMSClassUnloadingEnabled -Xss2M"
+* import scalac._
+* val solutions = ChessChallengeSolver.solution(new Board(7, 7, Set()), List(King(0, 0), King(0, 0), Queen(0, 0), Queen(0, 0), Bishop(0,0), Bishop(0,0), Knight(0,0)), Set(), Set())
+* solutions.foreach(b => b.show())
+
+
