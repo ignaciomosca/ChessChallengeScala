@@ -28,7 +28,7 @@ Based on experience with previous problems, I reduced the current problem to an 
 # Instructions
 
 * git clone https://ignaciomosca@bitbucket.org/ignaciomosca/chesschallengescala.git
-* cd ChessChallengeScala
+* cd chesschallengescala
 * sbt compile
 * sbt test
 
