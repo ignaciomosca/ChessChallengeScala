@@ -4,11 +4,7 @@ package scalac
   * Represents a ChessBoard
   * Created by ignacio on 05/09/16.
   */
-class Board(M: Int, N: Int, usedPieces: Set[ChessPiece]) {
-
-  def getM = M
-  def getN = N
-  def getUsedPieces = usedPieces;
+case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece]) {
 
   /***
     *
@@ -43,15 +39,6 @@ class Board(M: Int, N: Int, usedPieces: Set[ChessPiece]) {
       println()
     }
     println()
-  }
-
-  override def equals(that: Any): Boolean =
-    that match {
-      case that: Board => that.getUsedPieces.equals(this.getUsedPieces)
-      case _ => false
-    }
-  override def hashCode: Int = {
-    31 * this.getUsedPieces.hashCode();
   }
 
 }

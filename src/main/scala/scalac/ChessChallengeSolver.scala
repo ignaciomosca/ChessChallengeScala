@@ -1,5 +1,7 @@
 package scalac
 
+import scala.annotation.tailrec
+
 /**
   * Created by ignaciomosca on 9/6/16.
   */
@@ -13,12 +15,13 @@ object ChessChallengeSolver {
   * @param testedConfigurations Board configurations to which solutions were not found
   * @return return a list of possible solutions to the problem in the form of a list of filled chess boards
   */
+  @tailrec
   def solution(board: Board, pieces: List[ChessPiece], solutions: Set[Board], testedConfigurations: Set[Board]): Set[Board] = {
     if (!pieces.isEmpty) {
       val candidateBoard = findCandidatePosition(pieces.head, board, solutions, testedConfigurations)
       val setBoards = (for {
         b <- candidateBoard
-      } yield solution(b, pieces.tail, solutions + b, testedConfigurations + b)).foldLeft(Set[Board]())((s, b) => s ++ b)
+      } yield solution(b, pieces.tail, solutions + b, testedConfigurations + b))
       setBoards
     } else {
       Set(board)
@@ -35,8 +38,8 @@ object ChessChallengeSolver {
     */
   private def findCandidatePosition(chessPiece: ChessPiece, board: Board, solutions: Set[Board], testedConfigurations: Set[Board]) = {
     for {
-      r <- 1 to board.getM
-      c <- 1 to board.getN
+      r <- 1 to board.M
+      c <- 1 to board.N
       p = ChessPieceUtils.createPiece(chessPiece, r, c)
       b = board.place(p)
       if (board.isSafe(p) && !testedConfigurations.contains(b) && !solutions.contains(b))
