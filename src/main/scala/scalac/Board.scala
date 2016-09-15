@@ -28,6 +28,10 @@ case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece], initialPieces: Int
     */
   def findChessPiece(row: Int, col: Int):Char = usedPieces.find(p => p.row==row && p.col==col).map(p => p.piece()).getOrElse('_')
 
+  /***
+    *
+    * @return returns true if the chessboard is complete
+    */
   def done = usedPieces.size == initialPieces
 
   /***
