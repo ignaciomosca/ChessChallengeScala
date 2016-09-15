@@ -2,7 +2,6 @@ package scalac
 
 /**
   * Represents the ChessPieces, the way they show in the ChessBoard and the way they attack
-  * I thought about using a trait and an abstract class, but because a Trait already defines a type, using both was useless
   * Created by ignacio on 05/09/16.
   */
 sealed trait ChessPiece {
@@ -12,7 +11,6 @@ sealed trait ChessPiece {
 
   def attacks(c: ChessPiece): Boolean
 
-  def piece(): Char
 }
 
 case class King(row: Int, col: Int) extends ChessPiece {
@@ -23,19 +21,19 @@ case class King(row: Int, col: Int) extends ChessPiece {
     moves.contains((c.row, c.col))
   }
 
-  override def piece(): Char = 'K'
+  override def toString() = "K"
 }
 
 case class Queen(row: Int, col: Int) extends ChessPiece {
   override def attacks(c: ChessPiece): Boolean = c.row == row || c.col == col || Math.abs(c.row - row) == Math.abs(c.col - col)
 
-  override def piece(): Char = 'Q'
+  override def toString() = "Q"
 }
 
 case class Bishop(row: Int, col: Int) extends ChessPiece {
   override def attacks(c: ChessPiece): Boolean = Math.abs(c.row - row) == Math.abs(c.col - col)
 
-  override def piece(): Char = 'B'
+  override def toString() = "B"
 }
 
 case class Knight(row: Int, col: Int) extends ChessPiece {
@@ -44,13 +42,13 @@ case class Knight(row: Int, col: Int) extends ChessPiece {
 
   override def attacks(c: ChessPiece): Boolean = moves.contains((c.row, c.col))
 
-  override def piece(): Char = 'N'
+  override def toString() = "N"
 }
 
 case class Rook(row: Int, col: Int) extends ChessPiece {
   override def attacks(c: ChessPiece): Boolean = c.row == row || c.col == col
 
-  override def piece(): Char = 'R'
+  override def toString() = "R"
 }
 
 

@@ -26,7 +26,7 @@ case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece], initialPieces: Int
     * @param col
     * @return displays which piece is in position (row,col) if the position is empty it displays '_'
     */
-  def findChessPiece(row: Int, col: Int):Char = usedPieces.find(p => p.row==row && p.col==col).map(p => p.piece()).getOrElse('_')
+  def findChessPiece(row: Int, col: Int):String = usedPieces.find(p => p.row==row && p.col==col).map(p => p.toString()).getOrElse("_")
 
   /***
     *
