@@ -4,7 +4,7 @@ package scalac
   * Represents a ChessBoard
   * Created by ignacio on 05/09/16.
   */
-case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece]) {
+case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece], initialPieces: Int) {
 
   /***
     *
@@ -18,7 +18,7 @@ case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece]) {
     * @param c ChessPiece to be placed in the board
     * @return a Board with ChessPiece c placed
     */
-  def place(c: ChessPiece) = new Board(M, N, usedPieces+c)
+  def place(c: ChessPiece) = new Board(M, N, usedPieces+c, initialPieces)
 
   /***
     *
@@ -27,6 +27,8 @@ case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece]) {
     * @return displays which piece is in position (row,col) if the position is empty it displays '_'
     */
   def findChessPiece(row: Int, col: Int):Char = usedPieces.find(p => p.row==row && p.col==col).map(p => p.piece()).getOrElse('_')
+
+  def done = usedPieces.size == initialPieces
 
   /***
     * Displays the current ChessBoard

@@ -12,19 +12,18 @@ object ChessChallengeSolver {
   * @param board                ChessBoard
   * @param pieces               Chess Pieces selected by the user
   * @param solutions            valid solutions to the problem
-  * @param testedConfigurations Board configurations to which solutions were not found
   * @return return a list of possible solutions to the problem in the form of a list of filled chess boards
   */
   @tailrec
-  def solution(board: Board, pieces: List[ChessPiece], solutions: Set[Board], testedConfigurations: Set[Board]): Set[Board] = {
-    if (!pieces.isEmpty) {
-      val candidateBoard = findCandidatePosition(pieces.head, board, solutions, testedConfigurations)
-      val setBoards = (for {
-        b <- candidateBoard
-      } yield solution(b, pieces.tail, solutions + b, testedConfigurations + b))
-      setBoards
-    } else {
-      Set(board)
+  def solution(board: Board, pieces: List[ChessPiece], solutions: Set[Board]):Set[Board] = pieces match{
+    case List() => solutions
+    case p::ps => {
+      val newBoard = findCandidatePosition(p,board,solutions).head
+      if(newBoard.done){
+        solution(newBoard,List(), solutions + newBoard)
+      }else{
+        solution(newBoard, ps, solutions)
+      }
     }
   }
 
@@ -33,18 +32,18 @@ object ChessChallengeSolver {
     * @param chessPiece piece to be placed
     * @param board board in which to place the piece
     * @param solutions solutions that were already found
-    * @param testedConfigurations configurations that were already tested
-    * @return returns a possible board configuration to add to the solutions Set
+    * @return returns a possible board to add to the solutions Set
     */
-  private def findCandidatePosition(chessPiece: ChessPiece, board: Board, solutions: Set[Board], testedConfigurations: Set[Board]) = {
+  private def findCandidatePosition(chessPiece: ChessPiece, board: Board, solutions: Set[Board]) = {
     for {
       r <- 1 to board.M
       c <- 1 to board.N
       p = ChessPieceUtils.createPiece(chessPiece, r, c)
       b = board.place(p)
-      if (board.isSafe(p) && !testedConfigurations.contains(b) && !solutions.contains(b))
+      if (board.isSafe(p) && !solutions.contains(b))
     } yield b
   }
+
 
 }
 
