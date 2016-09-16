@@ -1,52 +1,48 @@
 package scalac
 
-import scala.annotation.tailrec
-
+/**
+  * Created by ignaciomosca on 9/6/16.
+  */
 object ChessChallengeSolver {
 
   /**
     * @param board     ChessBoard
     * @param pieces    Chess Pieces selected by the user
-    * @param solutions Valid solutions to the problem
-    * @param steps     Intermediate solutions
+    * @param solutions valid solutions to the problem
     * @return return a list of possible solutions to the problem in the form of a list of filled chess boards
     */
-  @tailrec
-  def solution(board: Board, pieces: List[ChessPiece], solutions: Set[Board], steps: List[Board]): Set[Board] = pieces match {
-    case List() => if (pieces.isEmpty) solutions else solution(steps.head, pieces, solutions, steps.tail)
-    case p :: ps => {
-      val extraSteps = findCandidatePosition(p, board, solutions)
-      solution(steps.head, pieces, solutions, steps.tail ++ extraSteps)
-    }
-  }
-
-  /**
-    * @param chessPiece piece to be placed
-    * @param board      board in which to place the piece
-    * @param solutions  solutions that were already found
-    * @return returns a possible board to add to the solutions Set
-    */
-  private def findCandidatePosition(chessPiece: ChessPiece, board: Board, solutions: Set[Board]) = {
-    for {
+  def solution(board: Board, pieces: List[ChessPiece], solutions: Set[Board]): Set[Board] = {
+    (for {
       r <- 1 to board.M
       c <- 1 to board.N
-      p = ChessPieceUtils.createPiece(chessPiece, r, c)
-      b = board.place(p)
-      if (board.isSafe(p) && !solutions.contains(b))
-    } yield b
+      chessPiece <- pieces.map(p => ChessPieceUtils.createPiece(p,r,c))
+      b = board.place(chessPiece)
+      s <- solution(b, removePieces(chessPiece, pieces), solutions ++ isSolution(b, solutions))
+    } yield s) (collection.breakOut)
+  }
+
+  /***
+    *
+    * @param chessPiece chessPiece to be removed
+    * @param pieces list of remaining pieces to be placed
+    * @return a list of pieces without the one that was used
+    */
+  def removePieces(chessPiece: ChessPiece, pieces: List[ChessPiece]): List[ChessPiece] = pieces match{
+    case List() => List()
+    case p::ps => if(p.toString.equals(chessPiece.toString)) ps else p::removePieces(chessPiece,ps)
   }
 
   /**
-    * @param newBoard candidate board
-    * @param solutions list of solutions
-    * @return returns a one set element if it's a new solution or an empty list if it's not
+    * @param board candidate board
+    * @param solutions
+    * @return returns a set containing a new board configuration
     */
-  def isSolution(newBoard: Board, solutions: Set[Board]) = {
-    if (newBoard.done && !solutions.contains(newBoard)) {
-      Set(newBoard)
+  def isSolution(board: Board, solutions: Set[Board]): Set[Board] = {
+    if (board.done && !solutions.contains(board)) {
+      Set(board)
     } else {
       Set()
     }
   }
-}
 
+}
