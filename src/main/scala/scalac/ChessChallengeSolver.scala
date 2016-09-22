@@ -23,7 +23,7 @@ object ChessChallengeSolver {
     */
   @tailrec
   private def obtainSolution(pieces: List[ChessPiece], solutions: Set[Board]): Set[Board] = pieces match {
-    case p :: ps => obtainSolution(ps, candidateSolution(p, solutions, Set[Board]()))
+    case p :: ps => obtainSolution(ps, candidateSolution(p, solutions))
     case Nil => solutions
   }
 
@@ -31,10 +31,9 @@ object ChessChallengeSolver {
     *
     * @param candidatePiece  piece to be placed
     * @param candidateBoards board in which it will be placed
-    * @param solutions       list of current solutions
     * @return find candidate boards with the candidatePiece placed
     */
-  private def candidateSolution(candidatePiece: ChessPiece, candidateBoards: Set[Board], solutions: Set[Board]): Set[Board] = {
+  private def candidateSolution(candidatePiece: ChessPiece, candidateBoards: Set[Board]): Set[Board] = {
     for{
       board <- candidateBoards
       c <- findCandidateSolution(candidatePiece, board)
