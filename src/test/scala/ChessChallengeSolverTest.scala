@@ -13,7 +13,8 @@ class ChessChallengeSolverTest extends FunSuite {
 
   test("3x3 board containing 2 Kings and 1 Rook") {
     val start = System.currentTimeMillis()
-    val solutions = ChessChallengeSolver.solution(new Board(3, 3, Set(),3), List(King(0, 0), King(0, 0), Rook(0, 0)))
+    val pieces = List(King(0, 0), King(0, 0), Rook(0, 0))
+    val solutions = ChessChallengeSolver.solution(new Board(3, 3, Set(), pieces.length), pieces)
     val finish = System.currentTimeMillis()
     solutions.foreach(b => b.show())
     println(s"Elapsed time: ${finish-start} ms")
@@ -21,7 +22,8 @@ class ChessChallengeSolverTest extends FunSuite {
   }
   test("4x4 board containing 3 Rooks and 4 Knighs") {
     val start = System.currentTimeMillis()
-    val solutions = ChessChallengeSolver.solution(new Board(4, 4, Set(),6), List(Knight(0, 0), Knight(0, 0), Knight(0, 0), Knight(0, 0), Rook(0, 0), Rook(0, 0)))
+    val pieces = List(Knight(0, 0), Knight(0, 0), Knight(0, 0), Knight(0, 0), Rook(0, 0), Rook(0, 0))
+    val solutions = ChessChallengeSolver.solution(new Board(4, 4, Set(), pieces.length), pieces)
     val finish = System.currentTimeMillis()
     solutions.foreach(b => b.show())
     println(s"Elapsed time: ${finish-start} ms")
@@ -29,7 +31,8 @@ class ChessChallengeSolverTest extends FunSuite {
   }
   test("8x8 board with 8 Queens returns 92 solutions") {
     val start = System.currentTimeMillis()
-    val solutions = ChessChallengeSolver.solution(new Board(8, 8, Set(),8), List(Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0)))
+    val pieces = List(Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0))
+    val solutions = ChessChallengeSolver.solution(new Board(8, 8, Set(), pieces.length), pieces)
     val finish = System.currentTimeMillis()
     solutions.take(5).foreach(b => b.show())
     println(s"Elapsed time: ${finish-start} ms")
@@ -37,7 +40,8 @@ class ChessChallengeSolverTest extends FunSuite {
   }
   test("7x7 board with 2 Kings, 2 Queens, 2 Bishops and a Knight returns 3063828 solutions") {
     val start = System.currentTimeMillis()
-    val solutions = ChessChallengeSolver.solution(new Board(7, 7, Set(), 7), List(King(0, 0), King(0, 0), Queen(0, 0), Queen(0, 0), Bishop(0,0), Bishop(0,0), Knight(0,0)))
+    val pieces = List(King(0, 0), King(0, 0), Queen(0, 0), Queen(0, 0), Bishop(0,0), Bishop(0,0), Knight(0,0))
+    val solutions = ChessChallengeSolver.solution(new Board(7, 7, Set(), pieces.length), pieces)
     val finish = System.currentTimeMillis()
     solutions.take(5).foreach(b => b.show())
     println(s"Elapsed time: ${finish-start} ms")

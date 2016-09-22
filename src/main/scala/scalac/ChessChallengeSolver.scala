@@ -50,7 +50,7 @@ object ChessChallengeSolver {
     */
   private def findCandidateSolution(candidatePiece: ChessPiece, board: Board): Set[Board] = {
     def findCandidateSolutionAux(usedPieces: Set[ChessPiece], solutions: Set[Board]): Set[Board] = {
-      if (usedPieces.size != board.initialPieces) {
+      if (usedPieces.size != board.numberOfPieces) {
         (for {
           r <- 1 to board.M
           c <- 1 to board.N
