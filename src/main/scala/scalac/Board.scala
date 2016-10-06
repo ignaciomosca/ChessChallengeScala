@@ -18,7 +18,7 @@ case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece], numberOfPieces: In
     * @param c ChessPiece to be placed in the board
     * @return a Board with ChessPiece c placed
     */
-  def place(c: ChessPiece) = new Board(M, N, usedPieces+c, numberOfPieces)
+  def place(c: ChessPiece) = Board(M, N, usedPieces+c, numberOfPieces)
 
   /***
     *
@@ -30,7 +30,7 @@ case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece], numberOfPieces: In
 
   /***
     *
-    * @return returns true if the chessboard is complete
+    * @return true if the chessboard is complete
     */
   def done = usedPieces.size == numberOfPieces
 
