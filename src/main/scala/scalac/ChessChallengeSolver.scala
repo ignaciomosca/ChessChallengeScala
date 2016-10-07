@@ -44,8 +44,8 @@ object ChessChallengeSolver {
           c <- 1 to board.N
           p = ChessPieceUtils.createPiece(candidatePiece, r, c)
           b = board.place(p)
-          if (board.isSafe(p) && !solutions.contains(b))
-        } yield b) (collection.breakOut)
+          if board.isSafe(p) && !solutions.contains(b)
+        } yield b).toSet
       } else {
         solutions
       }

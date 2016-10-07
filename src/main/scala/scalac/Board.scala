@@ -18,15 +18,9 @@ case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece], numberOfPieces: In
     * @param c ChessPiece to be placed in the board
     * @return a Board with ChessPiece c placed
     */
-  def place(c: ChessPiece) = Board(M, N, usedPieces+c, numberOfPieces)
+  def place(c: ChessPiece): Board = Board(M, N, usedPieces+c, numberOfPieces)
 
-  /***
-    *
-    * @param row
-    * @param col
-    * @return displays which piece is in position (row,col) if the position is empty it displays '_'
-    */
-  def findChessPiece(row: Int, col: Int):String = usedPieces.find(p => p.row==row && p.col==col).map(p => p.toString()).getOrElse("_")
+  private def findChessPiece(row: Int, col: Int):String = usedPieces.find(p => p.row==row && p.col==col).map(p => p.toString()).getOrElse("_")
 
   /***
     *

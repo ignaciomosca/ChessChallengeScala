@@ -11,7 +11,7 @@ import scalac._
   */
 class ChessChallengeSolverTest extends FunSuite {
 
-  def timer[R](function: => R): R = {
+  private def timer[R](function: => R): R = {
     val start = System.currentTimeMillis()
     val result = function
     val finish = System.currentTimeMillis()
