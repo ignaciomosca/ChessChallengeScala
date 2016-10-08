@@ -21,13 +21,15 @@ object ChessPieceUtils {
 
   /***
     *
-    * @param n number of pieces to be added
-    * @param l list in which it will be added
-    * @param c ChessPiece to be added
-    * @return a new List with n ChessPieces(s) added to it
+    * @return a List of ChessPiece(s) based on the numbers of each piece provided by the user
     */
-  def addNPieces(n: Int, l: List[ChessPiece], c: ChessPiece): List[ChessPiece] = {
-    l ::: List.fill(n)(c)
+  def createListOfPieces(numberOfKings: Int, numberOfQueens: Int, numberOfBishops: Int, numberOfRooks: Int, numberOfKnights:Int): List[ChessPiece]= {
+    val listOfKings = List.fill(numberOfKings)(King(0,0))
+    val listOfQueens = List.fill(numberOfQueens)(Queen(0,0))
+    val listOfBishops = List.fill(numberOfBishops)(Bishop(0,0))
+    val listOfRooks = List.fill(numberOfRooks)(Rook(0,0))
+    val listOfKnights = List.fill(numberOfKnights)(Knight(0,0))
+    listOfKings:::listOfQueens:::listOfBishops:::listOfRooks:::listOfKnights
   }
 
   /***

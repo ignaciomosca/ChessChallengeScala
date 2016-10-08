@@ -24,16 +24,13 @@ object Main extends App {
   println("How many knights are to be placed on the board?")
   val knights = StdIn.readInt();
 
-  var pieces = List[ChessPiece]()
-  pieces = ChessPieceUtils.addNPieces(kings, pieces, King(0, 0))
-  pieces = ChessPieceUtils.addNPieces(queens, pieces, Queen(0, 0))
-  pieces = ChessPieceUtils.addNPieces(bishops, pieces, Bishop(0, 0))
-  pieces = ChessPieceUtils.addNPieces(rooks, pieces, Rook(0, 0))
-  pieces = ChessPieceUtils.addNPieces(knights, pieces, Knight(0, 0))
+  val pieces = ChessPieceUtils.createListOfPieces(kings, queens, bishops, rooks, knights)
 
   val totalPieces = pieces.size
 
-  val solutions = timer{ChessChallengeSolver.solution(Board(M, N, Set(), totalPieces), pieces)}
+  val solutions = timer {
+    ChessChallengeSolver.solution(Board(M, N, Set(), totalPieces), pieces)
+  }
 
   solutions.map(_.show())
 }
