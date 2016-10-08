@@ -1,6 +1,7 @@
 import org.scalatest.FunSuite
 
 import scalac._
+import ChessPieceUtils.timer
 
 /**
   * To measure performance I ran the 8 queens code with a modified Main class that generated the test from the results.
@@ -10,14 +11,6 @@ import scalac._
   * Created by ignacio on 07/09/16.
   */
 class ChessChallengeSolverTest extends FunSuite {
-
-  private def timer[R](function: => R): R = {
-    val start = System.currentTimeMillis()
-    val result = function
-    val finish = System.currentTimeMillis()
-    println(s"Elapsed time: ${finish - start} ms")
-    result
-  }
 
   test("3x3 board containing 2 Kings and 1 Rook") {
     val pieces = List(King(0, 0), King(0, 0), Rook(0, 0))

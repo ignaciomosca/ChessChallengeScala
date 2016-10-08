@@ -1,15 +1,12 @@
 package scalac
 
 import scala.io.StdIn
+import scalac.ChessPieceUtils.timer
 
 /**
   * Created by ignacio on 08/10/16.
   */
 object Main extends App {
-
-  def addNPieces(n: Int, l: List[ChessPiece], c: ChessPiece): List[ChessPiece] = {
-    l ::: List.fill(n)(c)
-  }
 
   println("Define M")
   val M = StdIn.readInt()
@@ -28,15 +25,15 @@ object Main extends App {
   val knights = StdIn.readInt();
 
   var pieces = List[ChessPiece]()
-  pieces = addNPieces(kings, pieces, King(0, 0))
-  pieces = addNPieces(queens, pieces, Queen(0, 0))
-  pieces = addNPieces(bishops, pieces, Bishop(0, 0))
-  pieces = addNPieces(rooks, pieces, Rook(0, 0))
-  pieces = addNPieces(knights, pieces, Knight(0, 0))
+  pieces = ChessPieceUtils.addNPieces(kings, pieces, King(0, 0))
+  pieces = ChessPieceUtils.addNPieces(queens, pieces, Queen(0, 0))
+  pieces = ChessPieceUtils.addNPieces(bishops, pieces, Bishop(0, 0))
+  pieces = ChessPieceUtils.addNPieces(rooks, pieces, Rook(0, 0))
+  pieces = ChessPieceUtils.addNPieces(knights, pieces, Knight(0, 0))
 
   val totalPieces = pieces.size
 
-  val solutions = ChessChallengeSolver.solution(Board(M, N, Set(), totalPieces), pieces)
+  val solutions = timer{ChessChallengeSolver.solution(Board(M, N, Set(), totalPieces), pieces)}
 
   solutions.map(_.show())
 }
