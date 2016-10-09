@@ -1,7 +1,5 @@
 package scalac
 
-import scala.io.StdIn
-
 /**
   * Created by ignacio on 06/09/16.
   */
