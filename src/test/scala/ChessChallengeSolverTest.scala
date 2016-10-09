@@ -1,7 +1,7 @@
 import org.scalatest.FunSuite
 
 import scalac._
-import ChessPieceUtils.timer
+import ChessUtils.timer
 
 /**
   * To measure performance I ran the 8 queens code with a modified Main class that generated the test from the results.

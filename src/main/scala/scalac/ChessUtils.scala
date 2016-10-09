@@ -1,9 +1,11 @@
 package scalac
 
+import scala.io.StdIn
+
 /**
   * Created by ignacio on 06/09/16.
   */
-object ChessPieceUtils {
+object ChessUtils {
   /***
     *
     * @param c ChessPiece to be created
@@ -43,6 +45,21 @@ object ChessPieceUtils {
     val finish = System.currentTimeMillis()
     println(s"Elapsed time: ${finish - start} ms")
     result
+  }
+
+  /***
+    *
+    * @param message message that gets displayed before requesting Input
+    * @param function a Function to be executed
+    * @return
+    */
+  def getInput[Int](message:String)(function: => Int): Int = {
+    var i: Option[Int] = None
+    do {
+      println(message)
+      i = try { Some(function) } catch { case _ => {println("Invalid Value. Please try again"); None} }
+    } while (i == None)
+    i.get
   }
 
 }

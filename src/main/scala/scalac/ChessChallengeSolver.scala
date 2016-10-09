@@ -38,7 +38,7 @@ object ChessChallengeSolver {
     (for {
       r <- 1 to board.M
       c <- 1 to board.N
-      p = ChessPieceUtils.createPiece(candidatePiece, r, c)
+      p = ChessUtils.createPiece(candidatePiece, r, c)
       b = board.place(p)
       if board.isSafe(p)
     } yield b).toSet
