@@ -18,7 +18,7 @@ class ChessChallengeSolverTest extends FunSuite {
     assert(solutions.size == 4)
   }
 
-  test("4x4 board containing 3 Rooks and 4 Knighs") {
+  test("4x4 board containing 3 Rooks and 4 Knights") {
     val pieces = List(Knight(0, 0), Knight(0, 0), Knight(0, 0), Knight(0, 0), Rook(0, 0), Rook(0, 0))
     val solutions = timer {ChessChallengeSolver.solution(Board(4, 4, Set(), pieces.length), pieces)}
     assert(solutions.size == 8)

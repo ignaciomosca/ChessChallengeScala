@@ -32,7 +32,7 @@ object Main extends App {
     ChessChallengeSolver.solution(Board(M, N, Set(), totalPieces), pieces)
   }
 
-  solutions.map(_.show())
+  println(s"Number of Solutions: ${solutions.size}")
 }
 
 
