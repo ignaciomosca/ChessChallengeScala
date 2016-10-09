@@ -29,7 +29,6 @@ Based on experience with previous problems, I reduced the current problem to an 
 
 * git clone https://ignaciomosca@bitbucket.org/ignaciomosca/chesschallengescala.git
 * cd chesschallengescala
-* export SBT_OPTS="-XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -Xmx4g" (try this if you get an OutOfMemoryError)
 * sbt compile
 * sbt test
 
