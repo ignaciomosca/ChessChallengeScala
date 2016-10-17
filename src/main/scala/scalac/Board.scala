@@ -20,7 +20,7 @@ case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece], numberOfPieces: In
     */
   def place(c: ChessPiece): Board = Board(M, N, usedPieces+c, numberOfPieces)
 
-  private def findChessPiece(row: Int, col: Int):String = usedPieces.find(p => p.row==row && p.col==col).map(p => p.toString()).getOrElse("_")
+  private def findChessPiece(row: Int, col: Int):String = usedPieces.find(p => p.row==row && p.col==col).map(_.toString()).getOrElse("_")
 
   /***
     *
