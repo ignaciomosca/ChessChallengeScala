@@ -1,6 +1,7 @@
 package scalac
 
 import scala.io.StdIn
+import scala.util.Try
 import scalac.ChessUtils.timer
 import scalac.ChessUtils.getInput
 
@@ -9,21 +10,26 @@ import scalac.ChessUtils.getInput
   */
 object Main extends App {
 
-  val M = getInput("Define M") {StdIn.readInt()}
-  val N = getInput("Define N") {StdIn.readInt()}
+  println("Define M")
+  val M = getInput { Try(StdIn.readInt()) }
+  println("Define N")
+  val N = getInput { Try(StdIn.readInt()) }
 
-  val kings = getInput("How many kings are to be placed on the board?") {StdIn.readInt()}
-  val queens = getInput("How many queens are to be placed on the board?") {StdIn.readInt()}
-  val bishops = getInput("How many bishops are to be placed on the board?") {StdIn.readInt()}
-  val rooks = getInput("How many rooks are to be placed on the board?") {StdIn.readInt()}
-  val knights = getInput("How many knights are to be placed on the board?") {StdIn.readInt()}
+  println("How many kings are to be placed on the board?")
+  val kings = getInput { Try(StdIn.readInt()) }
+  println("How many queens are to be placed on the board?")
+  val queens = getInput { Try(StdIn.readInt()) }
+  println("How many bishops are to be placed on the board?")
+  val bishops = getInput { Try(StdIn.readInt()) }
+  println("How many rooks are to be placed on the board?")
+  val rooks = getInput { Try(StdIn.readInt()) }
+  println("How many knights are to be placed on the board?")
+  val knights = getInput { Try(StdIn.readInt()) }
 
   val pieces = ChessUtils.createListOfPieces(kings, queens, bishops, rooks, knights)
   val totalPieces = pieces.size
 
-  val solutions = timer {
-    ChessChallengeSolver.solution(Board(M, N, Set(), totalPieces), pieces)
-  }
+  val solutions = timer { ChessChallengeSolver.solution(Board(M, N, Set(), totalPieces), pieces) }
   println(s"Number of Solutions: ${solutions.size}")
 }
 

@@ -1,5 +1,7 @@
 package scalac
 
+import scala.util.{Failure, Success, Try}
+
 /**
   * Created by ignacio on 06/09/16.
   */
@@ -47,21 +49,13 @@ object ChessUtils {
 
   /** *
     *
-    * @param message  message that gets displayed before requesting Input
     * @param function a function to be executed
     * @return validates an input
     */
-  def getInput[a](message: String)(function: => a): a = {
-    var i: Option[a] = None
-    do {
-      println(message)
-      i = try {
-        Some(function)
-      } catch {
-        case e: Exception => println("Invalid Value. Please try again"); None
-      }
-    } while (i.isEmpty)
-    i.get
-  }
+  def getInput[a](function: => Try[a]): a =
+  Iterator.continually(function).flatMap {
+    case Success(t) => Some(t)
+    case Failure(f) => println("Invalid Value. Please try again"); None
+  }.toSeq.head
 
 }
