@@ -32,13 +32,10 @@ case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece], numberOfPieces: In
     * Displays the current ChessBoard
     */
   def show() = {
-    for(x <- 1 to M){
-      for(y <- 1 to N){
-        print(findChessPiece(x,y))
-      }
-      println()
-    }
-    println()
+    (for{
+      x <- 1 to M
+      y <- 1 to N
+    }yield(x,y)).toList.map {case (x,y) => {if(y!=N) print(findChessPiece(x,y)) else println(findChessPiece(x,y))} }
   }
 
 }
