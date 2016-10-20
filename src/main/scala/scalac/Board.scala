@@ -6,36 +6,39 @@ package scalac
   */
 case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece], numberOfPieces: Int) {
 
-  /***
+  /** *
     *
     * @param c ChessPiece to be placed in the board
     * @return true if
     */
   def isSafe(c: ChessPiece): Boolean = usedPieces.forall(p => !c.attacks(p) && !p.attacks(c))
 
-  /***
+  /** *
     *
     * @param c ChessPiece to be placed in the board
     * @return a Board with ChessPiece c placed
     */
-  def place(c: ChessPiece): Board = Board(M, N, usedPieces+c, numberOfPieces)
+  def place(c: ChessPiece): Board = Board(M, N, usedPieces + c, numberOfPieces)
 
-  private def findChessPiece(row: Int, col: Int):String = usedPieces.find(p => p.row==row && p.col==col).map(_.toString()).getOrElse("_")
+  private def findChessPiece(row: Int, col: Int): String = usedPieces.find(p => p.row == row && p.col == col).map(_.toString()).getOrElse("_")
 
-  /***
+  /** *
     *
     * @return true if the chessboard is complete
     */
   def done = usedPieces.size == numberOfPieces
 
-  /***
+  /** *
     * Displays the current ChessBoard
     */
   def show() = {
-    (for{
-      x <- 1 to M
-      y <- 1 to N
-    }yield(x,y)).toList.map {case (x,y) => {if(y!=N) print(findChessPiece(x,y)) else println(findChessPiece(x,y))} }
+    for (x <- 1 to M) {
+      for (y <- 1 to N) {
+        print(findChessPiece(x, y))
+      }
+      println()
+    }
+    println()
   }
 
 }
