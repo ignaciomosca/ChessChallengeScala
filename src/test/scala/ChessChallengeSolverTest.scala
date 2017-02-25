@@ -30,6 +30,12 @@ class ChessChallengeSolverTest extends FunSuite {
     assert(solutions.size == 92)
   }
 
+  test("Print Board") {
+    val pieces = List(Knight(0, 0), Knight(0, 0), Knight(0, 0), Knight(0, 0), Rook(0, 0), Rook(0, 0))
+    val solutions = timer {ChessChallengeSolver.solution(Board(4, 4, Set(), pieces.length), pieces)}
+    solutions.map(_.show).foreach(println(_))
+  }
+
   test("7x7 board with 2 Kings, 2 Queens, 2 Bishops and a Knight returns 3063828 solutions") {
     val pieces = List(King(0, 0), King(0, 0), Queen(0, 0), Queen(0, 0), Bishop(0, 0), Bishop(0, 0), Knight(0, 0))
     val solutions = timer {ChessChallengeSolver.solution(Board(7, 7, Set(), pieces.length), pieces)}
