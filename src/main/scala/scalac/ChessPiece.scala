@@ -27,8 +27,8 @@ case class King(row: Int, col: Int) extends ChessPiece {
 case class Queen(row: Int, col: Int) extends ChessPiece {
   override def attacks(c: ChessPiece): Boolean =
     c.row == row ||
-    c.col == col ||
-    Math.abs(c.row - row) == Math.abs(c.col - col)
+      c.col == col ||
+      Math.abs(c.row - row) == Math.abs(c.col - col)
 
   override def toString = "Q"
 }

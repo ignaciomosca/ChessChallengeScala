@@ -17,7 +17,7 @@ object ChessChallengeSolver {
 
   /**
     *
-    * @param pieces  pieces to be placed
+    * @param pieces    pieces to be placed
     * @param solutions candidate boards with one or more pieces placed
     * @return places a piece in the board, generates possible board configurations with that piece, and then recursively calls itself without the used piece
     */

@@ -31,14 +31,14 @@ case class Board(M: Int, N: Int, usedPieces: Set[ChessPiece], numberOfPieces: In
   /** *
     * Displays the current ChessBoard
     */
-  def show():String = {
+  def show(): String = {
     val rows = (for {
       x <- 1 to M
       y <- 1 to N
     } yield findChessPiece(x, y)).grouped(N).toList
     val board = for {
       row <- rows
-    } yield row.mkString++"\n"
+    } yield row.mkString ++ "\n"
     board.flatten.mkString
   }
 
