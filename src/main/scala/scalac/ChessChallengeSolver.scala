@@ -15,17 +15,16 @@ object ChessChallengeSolver {
     */
   def solution(board: Board, pieces: List[ChessPiece]): Set[Board] = obtainSolution(pieces, Set(board)).filter(_.done)
 
+  /**
+    *
+    * @param pieces  pieces to be placed
+    * @param solutions candidate boards with one or more pieces placed
+    * @return places a piece in the board, generates possible board configurations with that piece, and then recursively calls itself without the used piece
+    */
   @tailrec
   private def obtainSolution(pieces: List[ChessPiece], solutions: Set[Board]): Set[Board] = pieces match {
-    case p :: ps => obtainSolution(ps, candidateSolution(p, solutions))
+    case p :: ps => obtainSolution(ps, solutions.flatMap(board => findCandidateSolution(p, board)))
     case Nil => solutions
-  }
-
-  private def candidateSolution(candidatePiece: ChessPiece, candidateBoards: Set[Board]): Set[Board] = {
-    for {
-      board <- candidateBoards
-      c <- findCandidateSolution(candidatePiece, board)
-    } yield c
   }
 
   /**
