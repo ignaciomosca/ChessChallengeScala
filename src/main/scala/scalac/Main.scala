@@ -44,7 +44,8 @@ object Main extends App {
   val totalPieces = pieces.size
 
   val solutions = timer {
-    ChessChallengeSolver.solution(Board(M, N, Set(), totalPieces), pieces)
+    val board = Board(M, N, Set(), totalPieces)
+    ChessChallengeSolver.solution(board, pieces, Set(board))
   }
   println(s"Number of Solutions: ${solutions.size}")
 }

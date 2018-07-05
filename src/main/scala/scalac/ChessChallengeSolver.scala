@@ -11,20 +11,13 @@ object ChessChallengeSolver {
     *
     * @param board  initial Board with no pieces placed
     * @param pieces Chess Pieces selected by the user to be placed
+    * @param solutions Set containing possible solutions
     * @return return a list of possible solutions to the problem in the form of a list of filled chess boards
     */
-  def solution(board: Board, pieces: List[ChessPiece]): Set[Board] = obtainSolution(pieces, Set(board)).filter(_.done)
-
-  /**
-    *
-    * @param pieces    pieces to be placed
-    * @param solutions candidate boards with one or more pieces placed
-    * @return places a piece in the board, generates possible board configurations with that piece, and then recursively calls itself without the used piece
-    */
   @tailrec
-  private def obtainSolution(pieces: List[ChessPiece], solutions: Set[Board]): Set[Board] = pieces match {
-    case p :: ps => obtainSolution(ps, solutions.flatMap(board => findCandidateSolution(p, board)))
-    case Nil => solutions
+  def solution(board: Board, pieces: List[ChessPiece], solutions: Set[Board]): Set[Board] = pieces match {
+    case p :: ps => solution(board, ps, solutions.flatMap(board => findCandidateSolution(p, board)))
+    case Nil => solutions.filter(_.done)
   }
 
   /**
