@@ -1,8 +1,11 @@
-#JVM
+# JVM
 .class
 target/
 
-
-#IDEA
+# IDEA
 .idea
 chesschallengescala.iml
+
+# Metals
+*.bloop
+*.metals
