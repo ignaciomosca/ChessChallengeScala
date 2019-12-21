@@ -33,16 +33,4 @@ object ChessUtils {
     val listOfKnights = List.fill(numberOfKnights)(Knight(0, 0))
     listOfKings ::: listOfQueens ::: listOfBishops ::: listOfRooks ::: listOfKnights
   }
-
-  /** *
-    *
-    * @param function a function to be executed
-    * @return validates an input
-    */
-  def getInput[a](function: => Try[a]): a =
-    Iterator.continually(function).flatMap {
-      case Success(t) => Some(t)
-      case Failure(f) => println("Invalid Value. Please try again"); None
-    }.toSeq.head
-
 }

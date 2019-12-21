@@ -2,7 +2,6 @@ package scalac
 
 import scala.io.StdIn
 import scala.util.Try
-import scalac.ChessUtils.getInput
 import zio._
 import zio.console._
 import java.io.IOException
@@ -15,19 +14,14 @@ object Main extends App {
   private def inputNumber(number: String) = {
     ZIO
     .effect(number.toInt)
-    .refineToOrDie[IOException]
-  }
-
-  private def validateInput(userInput: String) = {
-    inputNumber(userInput)
-    .orElse(putStrLn("invalid input") *> inputNumber(userInput))
+    .filterOrFail(_>=0)(new IOException("Invalid input"))
   }
 
   private def getInput(message: String):ZIO[Console, IOException, Int] = (for {
     _ <- putStrLn(message)
     input <- getStrLn
     number <- inputNumber(input)
-  } yield number) orElse getInput(message)
+  } yield number) orElse (putStrLn("Invalid Input") *> getInput(message))
 
   def run(args: List[String]) = (for {
     m <- getInput("Define M")
