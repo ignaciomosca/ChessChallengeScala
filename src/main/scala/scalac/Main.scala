@@ -2,7 +2,6 @@ package scalac
 
 import scala.io.StdIn
 import scala.util.Try
-import scalac.ChessUtils.timer
 import scalac.ChessUtils.getInput
 import zio._
 import zio.console._
@@ -41,11 +40,11 @@ object Main extends App {
     pieces = ChessUtils.createListOfPieces(kings, queens, bishops, rooks, knights)
     totalPieces = pieces.size
     board = Board(m,n, Set(), totalPieces)
+    start = System.currentTimeMillis()
     solutions = ChessChallengeSolver.solution(board, pieces, Set(board))
-    _ <- putStrLn(s"Number of Solutions: ${solutions.size}")
+    val finish = System.currentTimeMillis()
+    _ <- putStrLn(s"Number of Solutions: ${solutions.size}. Elapsed time: ${finish - start} ms")
   } yield ()).run *> IO.succeed(0)
 
 
 }
-
-

@@ -36,19 +36,6 @@ object ChessUtils {
 
   /** *
     *
-    * @param function a Function to be timed
-    * @return prints to console how much it took to execute
-    */
-  def timer[R](function: => R): R = {
-    val start = System.currentTimeMillis()
-    val result = function
-    val finish = System.currentTimeMillis()
-    println(s"Elapsed time: ${finish - start} ms")
-    result
-  }
-
-  /** *
-    *
     * @param function a function to be executed
     * @return validates an input
     */
