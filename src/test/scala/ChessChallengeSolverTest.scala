@@ -12,35 +12,35 @@ import scalac._
 class ChessChallengeSolverTest extends FunSuite {
 
   test("3x3 board containing 2 Kings and 1 Rook") {
-    val pieces = List(King(0, 0), King(0, 0), Rook(0, 0))
+    val pieces = List(KingPiece, KingPiece, RookPiece)
     val board = Board(3, 3, Set(), pieces.length)
     val solutions = ChessChallengeSolver.solution(board, pieces, Set(board))
     assert(solutions.size == 4)
   }
 
   test("4x4 board containing 3 Rooks and 4 Knights") {
-    val pieces = List(Knight(0, 0), Knight(0, 0), Knight(0, 0), Knight(0, 0), Rook(0, 0), Rook(0, 0))
+    val pieces = List(KnightPiece, KnightPiece, KnightPiece, KnightPiece, RookPiece, RookPiece)
     val board = Board(4, 4, Set(), pieces.length)
     val solutions = ChessChallengeSolver.solution(board, pieces, Set(board))
     assert(solutions.size == 8)
   }
 
   test("8x8 board with 8 Queens returns 92 solutions") {
-    val pieces = List(Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0), Queen(0, 0))
+    val pieces = List(QueenPiece, QueenPiece, QueenPiece, QueenPiece, QueenPiece, QueenPiece, QueenPiece, QueenPiece)
     val board = Board(8, 8, Set(), pieces.length)
     val solutions = ChessChallengeSolver.solution(board, pieces, Set(board))
     assert(solutions.size == 92)
   }
 
   test("Print Board") {
-    val pieces = List(Knight(0, 0), Knight(0, 0), Knight(0, 0), Knight(0, 0), Rook(0, 0), Rook(0, 0))
+    val pieces = List(KnightPiece, KnightPiece, KnightPiece, KnightPiece, RookPiece, RookPiece)
     val board = Board(8, 8, Set(), pieces.length)
     val solutions = ChessChallengeSolver.solution(board, pieces, Set(board))
     solutions.map(_.show).foreach(println(_))
   }
 
   /*test("7x7 board with 2 Kings, 2 Queens, 2 Bishops and a Knight returns 3063828 solutions") {
-    val pieces = List(King(0, 0), King(0, 0), Queen(0, 0), Queen(0, 0), Bishop(0, 0), Bishop(0, 0), Knight(0, 0))
+    val pieces = List(KingPiece, KingPiece, QueenPiece, QueenPiece, Bishop(0, 0), Bishop(0, 0), KnightPiece)
     val board = Board(7, 7, Set(), pieces.length)
     val solutions = ChessChallengeSolver.solution(board, pieces, Set(board))      
     assert(solutions.size == 3063828)

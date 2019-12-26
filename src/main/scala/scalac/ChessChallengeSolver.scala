@@ -15,7 +15,7 @@ object ChessChallengeSolver {
     * @return return a list of possible solutions to the problem in the form of a list of filled chess boards
     */
   @tailrec
-  def solution(board: Board, pieces: List[ChessPiece], solutions: Set[Board]): Set[Board] = pieces match {
+  def solution(board: Board, pieces: List[Piece], solutions: Set[Board]): Set[Board] = pieces match {
     case p :: ps => solution(board, ps, solutions.flatMap(board => findCandidateSolution(p, board)))
     case Nil => solutions.filter(_.done)
   }
@@ -26,7 +26,7 @@ object ChessChallengeSolver {
     * @param board          board in which it will be placed
     * @return iterate over all possible positions and look for a position in which a new valid board configuration can be created.
     */
-  private def findCandidateSolution(candidatePiece: ChessPiece, board: Board): Set[Board] = {
+  private def findCandidateSolution(candidatePiece: Piece, board: Board): Set[Board] = {
     (for {
       r <- 1 to board.M
       c <- 1 to board.N
