@@ -20,6 +20,7 @@ object Main extends App {
   private def getInput(message: String):ZIO[Console, IOException, Int] = (for {
     _ <- putStrLn(message)
     input <- getStrLn.orDie
+    _ <- putStrLn(input)
     number <- inputNumber(input)
   } yield number) orElse (putStrLn("Invalid Input") *> getInput(message))
 
