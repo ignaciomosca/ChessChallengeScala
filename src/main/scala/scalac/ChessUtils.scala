@@ -1,6 +1,7 @@
 package scalac
 
 import scala.util.{Failure, Success, Try}
+import zio.UIO
 
 /**
   * Created by ignacio on 06/09/16.
@@ -25,12 +26,12 @@ object ChessUtils {
     *
     * @return a List of ChessPiece(s) based on the numbers of each piece provided by the user
     */
-  def createListOfPieces(numberOfKings: Int, numberOfQueens: Int, numberOfBishops: Int, numberOfRooks: Int, numberOfKnights: Int): List[ChessPiece] = {
+  def createListOfPieces(numberOfKings: Int, numberOfQueens: Int, numberOfBishops: Int, numberOfRooks: Int, numberOfKnights: Int): UIO[List[ChessPiece]] = {
     val listOfKings = List.fill(numberOfKings)(King(0, 0))
     val listOfQueens = List.fill(numberOfQueens)(Queen(0, 0))
     val listOfBishops = List.fill(numberOfBishops)(Bishop(0, 0))
     val listOfRooks = List.fill(numberOfRooks)(Rook(0, 0))
     val listOfKnights = List.fill(numberOfKnights)(Knight(0, 0))
-    listOfKings ::: listOfQueens ::: listOfBishops ::: listOfRooks ::: listOfKnights
+    UIO.effectTotal(listOfKings ::: listOfQueens ::: listOfBishops ::: listOfRooks ::: listOfKnights)
   }
 }
